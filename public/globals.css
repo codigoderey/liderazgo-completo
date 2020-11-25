@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --progressBar: black;
+}
+
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
+p,
+.item {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.item:hover {
+  cursor: pointer;
+}
+
+/* root colors */
+:root {
+  --white-color: #fff;
+  --blue-link: #2185d0;
+  --light-gray: #0000000d;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero {
+  width: 100%;
+  height: 50vh;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hero_home {
+  background-image: url('/success.jpg');
+  background-position: top;
+  background-size: cover;
+  filter: grayscale(1);
+}
+
+.hero_posts {
+  background-image: url('/umbrella-reading.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.hero_create {
+  background-image: url('/writing.jpg');
+  background-position: top;
+  background-size: cover;
+  filter: grayscale(1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* colors */
+.white {
+  color: var(--white-color);
+}
+
+.blue {
+  color: var(--blue-link);
+}
+
+/* footer */
+footer {
+  background-color: var(--light-gray);
+  padding: 1rem;
+  text-align: center;
+  min-height: 100px;
+}
+
+/* editor styles */
+figure img {
+  display: block;
+  max-width: 80%;
+  margin: auto;
+}
+
+blockquote {
+  margin-bottom: 16.8px;
+}
+
+blockquote p {
+  border-left: 0.5rem solid lightgray;
+  margin-left: 1rem;
+  padding: 1rem;
+}
