@@ -30,11 +30,11 @@ const PermisosCuenta = () => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell />
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Email</Table.HeaderCell>
-            <Table.HeaderCell>Joined</Table.HeaderCell>
-            <Table.HeaderCell>Updated</Table.HeaderCell>
-            <Table.HeaderCell>Role</Table.HeaderCell>
+            <Table.HeaderCell>Nombre</Table.HeaderCell>
+            <Table.HeaderCell>Correo</Table.HeaderCell>
+            <Table.HeaderCell>Ingreso</Table.HeaderCell>
+            <Table.HeaderCell>Actualizado</Table.HeaderCell>
+            <Table.HeaderCell>Permisos</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
