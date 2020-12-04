@@ -11,13 +11,17 @@ const PostTemplate = ({ post, user }) => {
   const [bookmark, setBookmark] = useState(false);
 
   useEffect(() => {
-    const filteredArray = user.bookmarked.filter((marked) => {
-      return marked.post._id === post._id;
-    });
+    if (!user) {
+      return;
+    } else {
+      const filteredArray = user.bookmarked.filter((marked) => {
+        return marked.post._id === post._id;
+      });
 
-    if (filteredArray.length) {
-      if (filteredArray[0].post._id === post._id) {
-        setBookmark(true);
+      if (filteredArray.length) {
+        if (filteredArray[0].post._id === post._id) {
+          setBookmark(true);
+        }
       }
     }
   }, []);
@@ -89,7 +93,8 @@ const PostTemplate = ({ post, user }) => {
         ></div>
 
         {/* likes and questions */}
-        {!bookmark ? (
+
+        {user && !bookmark ? (
           <Button onClick={handleAddBookmark} as="div" labelPosition="right">
             <Button icon>
               <Icon name="bookmark outline" />
@@ -97,12 +102,18 @@ const PostTemplate = ({ post, user }) => {
             </Button>
           </Button>
         ) : (
-          <Button onClick={handleRemoveBookmark} as="div" labelPosition="right">
-            <Button icon>
-              <Icon name="bookmark" />
-              Lectura guardada
+          user && (
+            <Button
+              onClick={handleRemoveBookmark}
+              as="div"
+              labelPosition="right"
+            >
+              <Button icon>
+                <Icon name="bookmark" />
+                Lectura guardada
+              </Button>
             </Button>
-          </Button>
+          )
         )}
         {/* likes and questions end */}
 

@@ -77,11 +77,12 @@ const handlePostRequest = async (req, res) => {
   try {
     // Run the middleware
     await runMiddleware(req, res, cors);
-    const { category, title, blurb, content, postBy } = req.body;
+    const { category, title, slug, blurb, content, postBy } = req.body;
 
     const publicacion = new Post({
       category,
       title,
+      slug,
       blurb,
       content,
       postBy,

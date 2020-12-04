@@ -10,6 +10,7 @@ import baseUrl from '../utils/baseUrl';
 import categories from '../utils/categories';
 import catchErrors from '../utils/catchErrors';
 import Header from '../components/Create/Header';
+import slug from 'slug';
 
 const CreatePost = ({ user }) => {
   const router = useRouter();
@@ -55,6 +56,7 @@ const CreatePost = ({ user }) => {
       const url = `${baseUrl}/api/lecturas`;
       const newContent = {
         title: publicacion.title,
+        slug: slug(publicacion.title),
         blurb: publicacion.blurb,
         category: publicacion.category,
         content: content,

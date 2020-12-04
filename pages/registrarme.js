@@ -110,7 +110,7 @@ const Register = () => {
           <Button icon="signup" type="submit" content="Crear cuenta" />
         </Form>
         <Message style={{ marginBottom: '2rem' }}>
-          Usuario existente? <Link href="login">Inicia sesión aquí</Link>.
+          Usuario existente? <Link href="/ingresar">Inicia sesión aquí</Link>.
         </Message>
       </Container>
     </>

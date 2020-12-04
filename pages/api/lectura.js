@@ -28,9 +28,9 @@ export default async (req, res) => {
   // Run the middleware
   await runMiddleware(req, res, cors);
   try {
-    const { _id } = req.query;
+    const { slug } = req.query;
 
-    const post = await Post.findOne({ _id })
+    const post = await Post.findOne({ slug: slug })
       .populate({
         path: 'postBy',
         model: User,

@@ -15,6 +15,10 @@ const PostSchema = new mongoose.Schema(
       required: true,
     },
 
+    slug: {
+      type: String,
+    },
+
     blurb: {
       type: String,
       required: true,

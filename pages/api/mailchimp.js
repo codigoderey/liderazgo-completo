@@ -5,7 +5,7 @@ export default async (req, res) => {
     const { name, email } = req.body;
 
     client.setConfig({
-      apiKey: 'abdee5841ed3b450cf020997c975075f-us7',
+      apiKey: process.env.MAILCHIMP,
       server: 'us7',
     });
 

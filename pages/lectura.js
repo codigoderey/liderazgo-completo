@@ -23,9 +23,10 @@ const PostPage = ({ post, user }) => {
   );
 };
 
-PostPage.getInitialProps = async ({ query: { _id } }) => {
+PostPage.getInitialProps = async ({ query: { slug } }) => {
   const url = `${baseUrl}/api/lectura`;
-  const payload = { params: { _id } };
+  const payload = { params: { slug } };
+  console.log(payload);
   const response = await axios.get(url, payload);
   return { post: response.data };
 };

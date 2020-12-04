@@ -19,12 +19,12 @@ const resetPasword = async ({ name, email, resetUrl }) => {
                 email,
               },
             ],
-            subject: 'Recupera tu contraseña',
+            subject: 'Recupera tu contraseña de Liderazgo Completo',
           },
         ],
         from: {
-          email: 'noreply@rasaeproject.com',
-          name: 'Proyecto Rasae',
+          email: 'noreply@liderazgocompleto.com',
+          name: 'Liderazgo Completo',
         },
         content: [
           {

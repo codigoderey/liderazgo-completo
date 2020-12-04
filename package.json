@@ -26,6 +26,7 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
     "shortid": "^2.2.16",
+    "slug": "^4.0.2",
     "suneditor-react": "^2.14.4",
     "validator": "^13.1.17"
   },
