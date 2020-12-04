@@ -19,12 +19,12 @@ const newAccountWelcomeEmail = async ({ name, email }) => {
                 email,
               },
             ],
-            subject: 'Bienvenido a RASAE',
+            subject: 'Bienvenido a Liderazgo Completo',
           },
         ],
         from: {
-          email: 'noreply@rasaeproject.com',
-          name: 'Proyecto Rasae',
+          email: 'noreply@liderazgocompleto.com',
+          name: 'Liderazgo Completo',
         },
         content: [
           {

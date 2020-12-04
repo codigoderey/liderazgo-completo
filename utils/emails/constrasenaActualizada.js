@@ -18,12 +18,12 @@ const contrasenaActualizada = async ({ name, email }) => {
                 email,
               },
             ],
-            subject: 'Contraseña actualizada',
+            subject: 'Contraseña actualizada de Liderazgo Completo',
           },
         ],
         from: {
-          email: 'noreply@rasaeproject.com',
-          name: 'Proyecto Rasae',
+          email: 'noreply@liderazgocompleto.com',
+          name: 'Liderazgo Completo',
         },
         content: [
           {

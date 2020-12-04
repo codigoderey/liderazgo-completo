@@ -18,9 +18,10 @@ import { useRouter } from 'next/router';
 const PostComments = ({ user, _id, post, comments }) => {
   if (!user)
     return (
-      <Message warning>
+      <Message style={{ marginBottom: '2rem' }} warning>
         <a href="/registrarme">
-          Crea una cuenta para ver comentarios comentar y otros beneficios
+          Crea una cuenta para comentar, ver comentarios, guardar lecturas, ver
+          perfiles de autores y otros beneficios.
         </a>
       </Message>
     );

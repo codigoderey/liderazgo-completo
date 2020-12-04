@@ -80,6 +80,7 @@ const NuevaContrasena = () => {
           content="Has hecho click en el correo para reiniciar la nueva contraseña"
         />
         <Form
+          loading={loading}
           success={success}
           error={Boolean(error)}
           onSubmit={handleSubmitPassword}
