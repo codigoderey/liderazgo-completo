@@ -170,7 +170,7 @@ const CreatePost = ({ user }) => {
             }}
           />
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Publicar</Button>
         </Form>
       </Container>
     </>

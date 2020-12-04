@@ -49,6 +49,7 @@ const handlePostRequest = async (req, res) => {
     const newBookmark = {
       post: postId,
     };
+    console.log(newBookmark);
     user.bookmarked.push(newBookmark);
     user.save();
   } catch (error) {

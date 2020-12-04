@@ -15,7 +15,7 @@ import formatDate from '../../utils/formatDate';
 import catchErrors from '../../utils/catchErrors';
 import { useRouter } from 'next/router';
 
-const PostComments = ({ user, _id, post, comments }) => {
+const PostComments = ({ user, _id, post, comments, slug }) => {
   if (!user)
     return (
       <Message style={{ marginBottom: '2rem' }} warning>
@@ -86,7 +86,7 @@ const PostComments = ({ user, _id, post, comments }) => {
         text: '',
       });
       setSuccess(true);
-      router.push(`/lectura?_id=${_id}`);
+      router.push(`/lectura?slug=${post.slug}`);
     } catch (error) {
       console.error(error);
       catchErrors(error, setError);
@@ -135,7 +135,7 @@ const PostComments = ({ user, _id, post, comments }) => {
         text: '',
       });
       setSuccess(true);
-      router.push(`/lectura?_id=${_id}`);
+      router.push(`/lectura?slug=${post.slug}`);
     } catch (error) {
       console.error(error);
       catchErrors(error, setError);

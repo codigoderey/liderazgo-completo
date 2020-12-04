@@ -34,6 +34,12 @@ const PostSchema = new mongoose.Schema(
       required: true,
     },
 
+    archive: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
+
     comments: [
       {
         user: {

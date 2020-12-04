@@ -34,7 +34,7 @@ const PostsRecent = () => {
                   key={post._id}
                   style={{ listStyle: 'none', margin: '0 0 .5rem 0' }}
                 >
-                  <Link key={count + 1} href={`/lectura?_id=${post._id}`}>
+                  <Link key={count + 1} href={`/lectura?slug=${post.slug}`}>
                     {post.title}
                   </Link>
                 </li>

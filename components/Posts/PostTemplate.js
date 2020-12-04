@@ -15,7 +15,9 @@ const PostTemplate = ({ post, user }) => {
       return;
     } else {
       const filteredArray = user.bookmarked.filter((marked) => {
-        return marked.post._id === post._id;
+        if (marked.post) {
+          return marked.post._id === post._id;
+        }
       });
 
       if (filteredArray.length) {

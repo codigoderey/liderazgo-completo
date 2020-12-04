@@ -12,6 +12,7 @@ import catchErrors from '../utils/catchErrors';
 import Header from '../components/Create/Header';
 
 const Editar = ({ post }) => {
+  console.log(post);
   const router = useRouter();
 
   const [content, setContent] = useState('');
@@ -21,6 +22,7 @@ const Editar = ({ post }) => {
     category: post.category,
     title: post.title,
     blurb: post.blurb,
+    slug: post.slug,
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -65,7 +67,7 @@ const Editar = ({ post }) => {
       const payload = newContent;
       await axios.put(url, payload);
       setSuccess(true);
-      router.push(`${baseUrl}/lectura?_id=${updatedPost._id}`);
+      router.push(`${baseUrl}/lectura?slug=${updatedPost.slug}`);
     } catch (error) {
       console.error(error.message);
       catchErrors(error, setError);
@@ -127,14 +129,6 @@ const Editar = ({ post }) => {
               value={updatedPost.blurb}
             />
           </Form.Field>
-          {/* <Form.Field>
-            <label>Contenido</label>
-            <Form.TextArea
-              name="content"
-              onChange={handleInputChange}
-              value={updatedPost.content}
-            />
-          </Form.Field> */}
           <SunEditor
             setContents={post.content}
             name="content"
@@ -163,16 +157,16 @@ const Editar = ({ post }) => {
             }}
           />
 
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Actualizar</Button>
         </Form>
       </Container>
     </>
   );
 };
 
-Editar.getInitialProps = async ({ query: { _id } }) => {
+Editar.getInitialProps = async ({ query: { slug } }) => {
   const url = `${baseUrl}/api/lectura`;
-  const payload = { params: { _id } };
+  const payload = { params: { slug } };
   const response = await axios.get(url, payload);
   return { post: response.data };
 };

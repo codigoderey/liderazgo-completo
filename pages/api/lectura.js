@@ -24,7 +24,24 @@ function runMiddleware(req, res, fn) {
   });
 }
 
-export default async (req, res) => {
+export default (req, res) => {
+  switch (req.method) {
+    case 'GET':
+      handleGetRequest(req, res);
+      break;
+
+    case 'PUT':
+      handlePutRequest(req, res);
+      break;
+
+    default:
+      res
+        .status(500)
+        .json({ msg: `Request ${req.method} is just not allowed` });
+  }
+};
+
+const handleGetRequest = async (req, res) => {
   // Run the middleware
   await runMiddleware(req, res, cors);
   try {
@@ -46,6 +63,29 @@ export default async (req, res) => {
     res.status(200).json(post);
   } catch (error) {
     console.error(error.message);
+  }
+};
+
+const handlePutRequest = async (req, res) => {
+  // Run de middleware
+  await runMiddleware(req, res, cors);
+
+  const { postId } = req.body.params;
+
+  console.log(req.body);
+
+  if (!('Authorization' in req.body.headers)) {
+    return res.status(401).send('No estás autorizado');
+  }
+  try {
+    const post = await Post.findById({ _id: postId });
+    post.archive = true;
+    await post.save();
+    await Post.deleteMany({ archive: true });
+    res.status(200).send('Publicación eliminada correctamente');
+  } catch (error) {
+    console.error(error);
+    res.send(error);
   }
 };
 

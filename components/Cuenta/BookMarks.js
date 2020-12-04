@@ -31,9 +31,9 @@ const BookMarks = ({ user }) => {
         Lecturas guardadas
       </Header>
       {user.bookmarked.map((mark) => {
-        return (
+        return mark.post && mark.post.archive === false ? (
           <Segment key={mark.post._id} style={{ margin: '1rem 0' }}>
-            <a href={`/lectura?_id=${mark.post._id}`}>
+            <a href={`/lectura?slug=${mark.post.slug}`}>
               <Label>
                 Categoría
                 <Label.Detail>{mark.post.category}</Label.Detail>
@@ -51,7 +51,7 @@ const BookMarks = ({ user }) => {
               </List>
             </a>
           </Segment>
-        );
+        ) : null;
       })}
     </Container>
   );

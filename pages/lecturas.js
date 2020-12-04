@@ -6,6 +6,7 @@ import PostsList from '../components/Posts/PostsList';
 import HeroPosts from '../components/Images/HeroPosts';
 
 const Lecturas = ({ posts, user }) => {
+  console.log(posts);
   return (
     <>
       <Head>

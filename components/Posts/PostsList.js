@@ -8,18 +8,40 @@ import {
 } from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 import Link from 'next/link';
+import baseUrl from '../../utils/baseUrl';
+import axios from 'axios';
+import cookie from 'js-cookie';
+import { useRouter } from 'next/router';
 
 const PostsList = ({ posts, user }) => {
+  const router = useRouter();
+
   if (posts.length === 0)
     return (
       <Container style={{ margin: '2rem 0' }}>
         <p>No hay lecturas por el momento</p>
       </Container>
     );
+
+  const eliminarElPost = async (postId) => {
+    try {
+      const url = `${baseUrl}/api/lectura`;
+      const token = cookie.get('token');
+      const payload = {
+        params: { postId },
+        headers: { Authorization: token },
+      };
+      await axios.put(url, payload);
+      router.reload(window.location.pathname);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Container style={{ marginBottom: '2rem' }}>
       {posts.map((post) => {
-        return (
+        return post && post.archive === false ? (
           <Segment key={post._id} style={{ marginTop: '2rem' }}>
             <Label style={{ marginBottom: '.5rem' }}>
               Categoría
@@ -56,11 +78,25 @@ const PostsList = ({ posts, user }) => {
               : user.name === post.postBy.name && (
                   <>
                     <Divider />
-                    <a href={`/editar?_id=${post._id}`}>Editar</a>
+                    <a href={`/editar?slug=${post.slug}`}>Editar</a>
+                  </>
+                )}
+            {user === undefined
+              ? null
+              : user.name === post.postBy.name && (
+                  <>
+                    <Divider />
+                    <Button
+                      color="red"
+                      inverted
+                      onClick={() => eliminarElPost(post._id)}
+                    >
+                      Borrar
+                    </Button>
                   </>
                 )}
           </Segment>
-        );
+        ) : null;
       })}
     </Container>
   );

@@ -56,7 +56,7 @@ const handleGetRequest = async (req, res) => {
     await runMiddleware(req, res, cors);
 
     // get posts
-    const posts = await Post.find()
+    const posts = await await Post.find()
       .populate({
         path: 'postBy',
         model: User,
@@ -110,8 +110,38 @@ const handlePutRequest = async (req, res) => {
     res.status(200).json(post);
   } catch (error) {
     console.error(error);
+    res.send(error);
   }
 };
+
+// // deleting posts
+// const handleDeleteRequest = async (req, res) => {
+//   // Run de middleware
+//   await runMiddleware(req, res, cors);
+
+//   const { postId, userId } = req.query;
+
+//   if (!('authorization' in req.headers)) {
+//     return res.status(401).send('No estás autorizado');
+//   }
+
+//   // await Post.findOneAndDelete({ _id: postId });
+
+//   const users = await User.find();
+//   const musers = users.map((um) => {
+//     if (um.bookmarked.length) {
+//       const arrayToMap = um.bookmarked;
+//       const lastArr = arrayToMap.filter((arr) => {
+//         return arr.post != postId;
+//       });
+//       return lastArr;
+//     }
+//   });
+
+//   console.log(musers);
+
+//   res.status(200);
+// };
 
 export const config = {
   api: {

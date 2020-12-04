@@ -1,6 +1,7 @@
 import User from '../../models/users';
 import jwt from 'jsonwebtoken';
 import Cors from 'cors';
+import connectDB from '../../utils/connectDB';
 
 connectDB();
 

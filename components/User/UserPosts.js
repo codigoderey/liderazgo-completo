@@ -17,7 +17,7 @@ const PostList = ({ posts, usuario }) => {
 
       {posts.map((post) => (
         <Segment key={post._id} style={{ marginTop: '2rem' }}>
-          <a href={`/lectura?_id=${post._id}`}>
+          <a href={`/lectura?slug=${post.slug}`}>
             <Label>
               Categoría
               <Label.Detail>{post.category}</Label.Detail>
