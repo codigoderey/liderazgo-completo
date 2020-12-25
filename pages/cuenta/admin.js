@@ -6,6 +6,8 @@ import {
   List,
   Header,
   Icon,
+  Divider,
+  Button,
 } from 'semantic-ui-react';
 import HeaderCuenta from '../../components/Cuenta/HeaderCuenta';
 import PermisosCuenta from '../../components/Cuenta/PermisosCuenta';
@@ -13,15 +15,35 @@ import BookMarks from '../../components/Cuenta/BookMarks';
 import baseUrl from '../../utils/baseUrl';
 import axios from 'axios';
 import formatDate from '../../utils/formatDate';
+import cookie from 'js-cookie';
+import { useRouter } from 'next/router';
 
 const Cuenta = ({ user, userPosts }) => {
+  const router = useRouter();
+  // obteniendo todas las publicaciones del usuario
   const posts = userPosts.filter((post) => {
     if (post.postBy) {
       return post.postBy.name === user.name;
     }
   });
 
+  // definiendo los roles de usuario
   const isAdminOrRoot = user.role === 'administrador' || user.role === 'root';
+
+  const eliminarElPost = async (postId) => {
+    try {
+      const url = `${baseUrl}/api/lectura`;
+      const token = cookie.get('token');
+      const payload = {
+        params: { postId },
+        headers: { Authorization: token },
+      };
+      await axios.put(url, payload);
+      router.reload(window.location.pathname);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -35,8 +57,6 @@ const Cuenta = ({ user, userPosts }) => {
         <Segment style={{ marginTop: '1rem' }}>
           <h1 style={{ textAlign: 'center' }}>Panel de Administración</h1>
         </Segment>
-        {/* user bookmarks */}
-        <BookMarks user={user} />
         {/* user publications */}
         <>
           {isAdminOrRoot && posts.length === 0 ? (
@@ -77,11 +97,36 @@ const Cuenta = ({ user, userPosts }) => {
                       </List.Item>
                     </List>
                   </a>
+                  {user === undefined
+                    ? null
+                    : user.name === post.postBy.name && (
+                        <>
+                          <Divider />
+                          {console.log(post._id)}
+                          <a href={`/lecturas/editar?slug=${post.slug}`}>
+                            Editar
+                          </a>
+                        </>
+                      )}
+                  {user && (
+                    <>
+                      <Divider />
+                      <Button
+                        color="red"
+                        inverted
+                        onClick={() => eliminarElPost(post._id)}
+                      >
+                        Borrar
+                      </Button>
+                    </>
+                  )}
                 </Segment>
               ))}
             </>
           )}
         </>
+        {/* user bookmarks */}
+        <BookMarks user={user} />
         {user.role === 'root' && <PermisosCuenta user={user} />}
       </Container>
     </>

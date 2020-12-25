@@ -6,7 +6,7 @@ const Categorias = ({ categorias }) => {
   return (
     <>
       <h3>Categorías</h3>
-      <ul>
+      <ul style={{ padding: 0 }}>
         {categorias.map((cat) => (
           <li
             key={shortid.generate() + 1}

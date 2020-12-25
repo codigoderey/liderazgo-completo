@@ -1,42 +1,14 @@
-import {
-  Container,
-  List,
-  Label,
-  Segment,
-  Divider,
-  Button,
-} from 'semantic-ui-react';
+import { Container, List, Label, Segment, Button } from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 import Link from 'next/link';
-import baseUrl from '../../utils/baseUrl';
-import axios from 'axios';
-import cookie from 'js-cookie';
-import { useRouter } from 'next/router';
 
 const PostsList = ({ posts, user }) => {
-  const router = useRouter();
-
   if (posts.length === 0)
     return (
       <Container style={{ margin: '2rem 0' }}>
         <p>No hay lecturas por el momento</p>
       </Container>
     );
-
-  const eliminarElPost = async (postId) => {
-    try {
-      const url = `${baseUrl}/api/lectura`;
-      const token = cookie.get('token');
-      const payload = {
-        params: { postId },
-        headers: { Authorization: token },
-      };
-      await axios.put(url, payload);
-      router.reload(window.location.pathname);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <Container style={{ marginBottom: '2rem' }}>
@@ -73,28 +45,6 @@ const PostsList = ({ posts, user }) => {
                 Leer
               </Button>
             </Link>
-            {user === undefined
-              ? null
-              : user.name === post.postBy.name && (
-                  <>
-                    <Divider />
-                    <a href={`/lecturas/editar?slug=${post.slug}`}>Editar</a>
-                  </>
-                )}
-            {user === undefined
-              ? null
-              : user.name === post.postBy.name && (
-                  <>
-                    <Divider />
-                    <Button
-                      color="red"
-                      inverted
-                      onClick={() => eliminarElPost(post._id)}
-                    >
-                      Borrar
-                    </Button>
-                  </>
-                )}
           </Segment>
         ) : null;
       })}

@@ -26,13 +26,17 @@ const PostsRecent = () => {
   return (
     <>
       <h3>Publicaciones recientes</h3>
-      <ul>
+      <ul style={{ padding: 0 }}>
         {posts
           ? posts
               .map((post) => (
                 <li
                   key={post._id}
-                  style={{ listStyle: 'none', margin: '0 0 .5rem 0' }}
+                  style={{
+                    listStyle: 'none',
+                    margin: '0 0 .5rem 0',
+                    padding: '0 0 .5rem 0',
+                  }}
                 >
                   <Link key={count + 1} href={`/lectura?slug=${post.slug}`}>
                     {post.title}

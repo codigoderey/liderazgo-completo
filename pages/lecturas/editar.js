@@ -66,7 +66,7 @@ const Editar = ({ post }) => {
       const payload = newContent;
       await axios.put(url, payload);
       setSuccess(true);
-      router.push(`${baseUrl}/lectura?slug=${updatedPost.slug}`);
+      router.push(`${baseUrl}/lecturas/lectura?slug=${updatedPost.slug}`);
     } catch (error) {
       console.error(error.message);
       catchErrors(error, setError);
