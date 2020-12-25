@@ -80,11 +80,31 @@ const handlePutRequest = async (req, res) => {
     // data content from body
     const post = await Post.findOne({ _id: req.body.query });
 
-    post.comments[req.body.commentIndex] = req.body.payload;
+    if (req.body.action === 'editar') {
+      post.comments[req.body.commentIndex] = req.body.payload;
 
-    await post.save();
+      await post.save();
 
-    res.status(200).json(post);
+      return res.status(200).json(post);
+    } else if (req.body.action === 'eliminar') {
+      post.comments.splice(req.body.commentIndex, 1);
+
+      await post.save();
+
+      return res.status(200).json(post);
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send(error.message);
+  }
+};
+
+const handleDeleteRequest = async (req, res) => {
+  try {
+    runMiddleware(req, res, cors);
+
+    console.log(req.body);
+    res.status(200).send('Comment deleted');
   } catch (error) {
     console.error(error.message);
     res.status(500).send(error.message);

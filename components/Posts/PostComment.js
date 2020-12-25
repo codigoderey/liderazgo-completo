@@ -39,6 +39,7 @@ const PostComments = ({ user, _id, post, comments, slug }) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(String);
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModal, deleteModalOpen] = useState(false);
 
   useEffect(() => {
     let timeout;
@@ -110,6 +111,12 @@ const PostComments = ({ user, _id, post, comments, slug }) => {
     setCommentIndex(index);
   };
 
+  const handleDeleteComment = (index) => {
+    deleteModalOpen(true);
+    setComentarioEditar(comments[index]);
+    setCommentIndex(index);
+  };
+
   const handleInputEditarChange = (e) => {
     setComentarioEditar({
       ...comentarioEditar,
@@ -125,15 +132,35 @@ const PostComments = ({ user, _id, post, comments, slug }) => {
       }
       setLoading(true);
       const url = `${baseUrl}/api/comentarios`;
+      const action = 'editar';
       const query = post._id;
       const payload = comentarioEditar;
-      await axios.put(url, { query, payload, commentIndex });
+      await axios.put(url, { action, query, payload, commentIndex });
       setModalOpen(false);
       setComentarioEditar({
         _id,
         user: user._id,
         text: '',
       });
+      setSuccess(true);
+      router.push(`/lecturas/lectura?slug=${post.slug}`);
+    } catch (error) {
+      console.error(error);
+      catchErrors(error, setError);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteCommentSubmit = async () => {
+    try {
+      setLoading(true);
+      const url = `${baseUrl}/api/comentarios`;
+      const action = 'eliminar';
+      const query = post._id;
+      const payload = comentarioEditar;
+      await axios.put(url, { action, query, payload, commentIndex });
+      deleteModalOpen(false);
       setSuccess(true);
       router.push(`/lecturas/lectura?slug=${post.slug}`);
     } catch (error) {
@@ -192,6 +219,23 @@ const PostComments = ({ user, _id, post, comments, slug }) => {
           </Header.Content>
         </Modal>
       )}
+      <Modal open={deleteModal}>
+        <Header>¿Borrar el comentario?</Header>
+        <Header.Content>
+          <Modal.Actions>
+            <Button
+              color="red"
+              content="Cancelar"
+              onClick={() => deleteModalOpen(false)}
+            />
+            <Button
+              type="submit"
+              content="Actualizar"
+              onClick={() => handleDeleteCommentSubmit()}
+            />
+          </Modal.Actions>
+        </Header.Content>
+      </Modal>
       <div style={{ margin: '1rem 0' }}>
         {comments
           .map((comment, index) => (
@@ -210,6 +254,17 @@ const PostComments = ({ user, _id, post, comments, slug }) => {
                     content="Editar"
                     size="mini"
                     onClick={() => handleEditarComment(index)}
+                  />
+                )}
+              </div>
+              <div>
+                {user.name === comment.user.name && (
+                  <Button
+                    color="red"
+                    style={{ margin: '.5rem 0 0 0' }}
+                    content="Eliminar"
+                    size="mini"
+                    onClick={() => handleDeleteComment(index)}
                   />
                 )}
               </div>
