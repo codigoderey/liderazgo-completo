@@ -70,7 +70,7 @@ const CreatePost = ({ user }) => {
         blurb: '',
       });
       setContent('');
-      router.push('/lecturas#start');
+      router.push('/lecturas/lista#start');
     } catch (error) {
       console.error(error.message);
       catchErrors(error, setError);
@@ -103,7 +103,7 @@ const CreatePost = ({ user }) => {
           <Message
             error
             icon="question"
-            header="Hubo un error!"
+            header="Hubo un error, intenta recargar la página!"
             content={error}
           />
           <Form.Field>
@@ -144,7 +144,6 @@ const CreatePost = ({ user }) => {
             height="600"
             setContents={content}
             name="content"
-            placeholder="Contenido"
             onChange={handleEditorChange}
             value={content}
             placeholder="Tu contenido aquí"

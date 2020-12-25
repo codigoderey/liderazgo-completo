@@ -15,7 +15,6 @@ export default async (req, res) => {
         status: 'transactional',
         merge_fields: { FNAME: name },
       });
-      console.log(response);
     };
 
     run();

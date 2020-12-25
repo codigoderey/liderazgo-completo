@@ -5,6 +5,7 @@ import baseUrl from '../utils/baseUrl';
 import Profile from '../components/User/Profile';
 import PostsList from '../components/User/UserPosts';
 import UserBookmarks from '../components/User/UserBookmarks';
+import { Container, Segment, Header } from 'semantic-ui-react';
 
 const Usuario = ({ userPosts }) => {
   return (
@@ -14,6 +15,11 @@ const Usuario = ({ userPosts }) => {
         <title>Perfil de {userPosts.user.name} | Liderazgo Completo</title>
       </Head>
       <Profile usuario={userPosts.user} />
+      <Container style={{ marginTop: '1rem' }}>
+        <Segment>
+          <Header as="h1">Acciones</Header>
+        </Segment>
+      </Container>
       <PostsList posts={userPosts.userPosts} usuario={userPosts.user} />
       <UserBookmarks usuario={userPosts.user} />
     </>

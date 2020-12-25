@@ -1,12 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import axios from 'axios';
-import baseUrl from '../utils/baseUrl';
-import PostsList from '../components/Posts/PostsList';
-import HeroPosts from '../components/Images/HeroPosts';
+import baseUrl from '../../utils/baseUrl';
+import PostsList from '../../components/Posts/PostsList';
+import HeroPosts from '../../components/Images/HeroPosts';
 
 const Lecturas = ({ posts, user }) => {
-  console.log(posts);
   return (
     <>
       <Head>

@@ -72,16 +72,28 @@ const handlePutRequest = async (req, res) => {
 
   const { postId } = req.body.params;
 
-  console.log(req.body);
-
   if (!('Authorization' in req.body.headers)) {
     return res.status(401).send('No estás autorizado');
   }
   try {
     const post = await Post.findById({ _id: postId });
+    console.log(post._id);
+
+    await User.find()
+      .populate({
+        path: 'bookmarked',
+        model: Post,
+      })
+      .updateMany(
+        {},
+        { $pull: { bookmarked: { post: post._id } } },
+        { multi: true }
+      );
+
     post.archive = true;
     await post.save();
     await Post.deleteMany({ archive: true });
+
     res.status(200).send('Publicación eliminada correctamente');
   } catch (error) {
     console.error(error);

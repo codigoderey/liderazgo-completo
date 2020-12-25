@@ -6,6 +6,7 @@ import { parseCookies, destroyCookie } from 'nookies';
 import Layout from '../components/Layout/Layout';
 import { redirectUser } from '../utils/auth';
 import baseUrl from '../utils/baseUrl';
+import '../public/globals.css';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -20,7 +21,7 @@ class MyApp extends App {
 
     if (!token) {
       const isProtectedRoute =
-        ctx.pathname === '/cuenta' ||
+        ctx.pathname === '/cuenta/admin' ||
         ctx.pathname === '/crear' ||
         ctx.pathname === '/usuario';
       // || ctx.pathname === '/posts';

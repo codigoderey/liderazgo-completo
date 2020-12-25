@@ -26,14 +26,14 @@ const BookMarks = ({ user }) => {
   }
   return (
     <Container style={{ marginBottom: '2rem' }}>
-      <Header style={{ margin: '4rem 0 0 0' }} as="h2">
+      <Header style={{ margin: '4rem 0 1rem 0' }} as="h2">
         <Icon name="bookmark" />
-        Lecturas guardadas
+        Mis lecturas guardadas
       </Header>
       {user.bookmarked.map((mark) => {
         return mark.post && mark.post.archive === false ? (
           <Segment key={mark.post._id} style={{ margin: '1rem 0' }}>
-            <a href={`/lectura?slug=${mark.post.slug}`}>
+            <a href={`/lecturas/lectura?slug=${mark.post.slug}`}>
               <Label>
                 Categoría
                 <Label.Detail>{mark.post.category}</Label.Detail>

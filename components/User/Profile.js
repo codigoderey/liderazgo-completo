@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Label, Header, Icon, Container } from 'semantic-ui-react';
+import { Segment, Header, Container } from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 
 const Profile = ({ usuario }) => {

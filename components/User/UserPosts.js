@@ -1,5 +1,12 @@
 import React from 'react';
-import { Container, List, Label, Segment, Divider } from 'semantic-ui-react';
+import {
+  Container,
+  List,
+  Label,
+  Segment,
+  Header,
+  Icon,
+} from 'semantic-ui-react';
 import formatDate from '../../utils/formatDate';
 
 const PostList = ({ posts, usuario }) => {
@@ -11,13 +18,14 @@ const PostList = ({ posts, usuario }) => {
     );
   return (
     <Container style={{ marginBottom: '2rem' }}>
-      <Segment style={{ marginTop: '1rem' }}>
-        <h1 style={{ textAlign: 'center' }}>Escritos por {usuario.name}</h1>
-      </Segment>
+      <Header style={{ margin: '4rem 0 1rem 0' }} as="h2">
+        <Icon name="edit" />
+        Publicaciones
+      </Header>
 
       {posts.map((post) => (
         <Segment key={post._id} style={{ marginTop: '2rem' }}>
-          <a href={`/lectura?slug=${post.slug}`}>
+          <a href={`/lecturas/lectura?slug=${post.slug}`}>
             <Label>
               Categoría
               <Label.Detail>{post.category}</Label.Detail>

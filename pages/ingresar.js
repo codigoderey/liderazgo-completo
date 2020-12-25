@@ -4,16 +4,10 @@ import axios from 'axios';
 import catchErrors from '../utils/catchErrors';
 import baseUrl from '../utils/baseUrl';
 
-import {
-  Button,
-  Container,
-  Form,
-  Icon,
-  Message,
-  Segment,
-} from 'semantic-ui-react';
+import { Button, Container, Form, Message } from 'semantic-ui-react';
 import Link from 'next/link';
 import { handleLogin } from '../utils/auth';
+
 const Register = () => {
   const [user, setUser] = useState({
     email: '',

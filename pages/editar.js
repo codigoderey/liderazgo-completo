@@ -12,7 +12,6 @@ import catchErrors from '../utils/catchErrors';
 import Header from '../components/Create/Header';
 
 const Editar = ({ post }) => {
-  console.log(post);
   const router = useRouter();
 
   const [content, setContent] = useState('');

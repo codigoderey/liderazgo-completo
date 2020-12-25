@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { Grid, Container } from 'semantic-ui-react';
-import baseUrl from '../utils/baseUrl';
-import PostTemplate from '../components/Posts/PostTemplate';
-import SideBar from '../components/Layout/SideBar';
+import baseUrl from '../../utils/baseUrl';
+import PostTemplate from '../../components/Posts/PostTemplate';
+import SideBar from '../../components/Layout/SideBar';
 
 const PostPage = ({ post, user }) => {
   return (
@@ -26,7 +26,6 @@ const PostPage = ({ post, user }) => {
 PostPage.getInitialProps = async ({ query: { slug } }) => {
   const url = `${baseUrl}/api/lectura`;
   const payload = { params: { slug } };
-  console.log(payload);
   const response = await axios.get(url, payload);
   return { post: response.data };
 };

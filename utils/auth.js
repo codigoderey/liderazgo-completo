@@ -3,7 +3,7 @@ import Router from 'next/router';
 
 export const handleLogin = (token) => {
   cookie.set('token', token);
-  Router.push('/cuenta');
+  Router.push('/cuenta/admin');
 };
 
 export const redirectUser = (ctx, location) => {

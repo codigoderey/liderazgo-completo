@@ -3,6 +3,7 @@ import Post from '../../models/posts';
 import User from '../../models/users';
 import connectDB from '../../utils/connectDB';
 import Cors from 'cors';
+import shortid from 'shortid';
 
 connectDB();
 
@@ -56,7 +57,7 @@ const handleGetRequest = async (req, res) => {
     await runMiddleware(req, res, cors);
 
     // get posts
-    const posts = await await Post.find()
+    const posts = await Post.find()
       .populate({
         path: 'postBy',
         model: User,
@@ -82,16 +83,17 @@ const handlePostRequest = async (req, res) => {
     const publicacion = new Post({
       category,
       title,
-      slug,
+      slug: slug + '-' + shortid.generate(),
       blurb,
       content,
       postBy,
     });
+
     publicacion.save();
 
     res.status(200).json({ message: 'Post added successfully' });
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
     res.status(500).send('Server error');
   }
 };
