@@ -34,7 +34,6 @@ const Header = ({ user }) => {
 
   const toggleMenu = () => {
     setMobile((prev) => !prev);
-    console.log(mobile);
   };
 
   if (justUser) {
@@ -238,7 +237,7 @@ const Header = ({ user }) => {
                 />
                 SALIR
               </Menu.Item>
-              <Link href="/crear">
+              <Link href="/lecturas/crear">
                 <Menu.Item
                   onClick={toggleMenu}
                   style={{ fontSize: '1rem', alignSelf: 'flex-start' }}

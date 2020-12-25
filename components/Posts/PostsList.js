@@ -14,7 +14,6 @@ import cookie from 'js-cookie';
 import { useRouter } from 'next/router';
 
 const PostsList = ({ posts, user }) => {
-  console.log(user);
   const router = useRouter();
 
   if (posts.length === 0)
@@ -44,7 +43,6 @@ const PostsList = ({ posts, user }) => {
       {posts.map((post) => {
         return post && post.archive === false ? (
           <Segment key={post._id} style={{ marginTop: '2rem' }}>
-            {console.log(post)}
             <Label style={{ marginBottom: '.5rem' }}>
               Categoría
               <Label.Detail>{post.category}</Label.Detail>
@@ -59,7 +57,7 @@ const PostsList = ({ posts, user }) => {
                       style={{ color: 'red' }}
                       href={
                         user && user._id === post.postBy._id
-                          ? '/cuenta'
+                          ? '/cuenta/admin'
                           : `/usuario?_id=${post.postBy._id}`
                       }
                     >
@@ -80,7 +78,7 @@ const PostsList = ({ posts, user }) => {
               : user.name === post.postBy.name && (
                   <>
                     <Divider />
-                    <a href={`/editar?slug=${post.slug}`}>Editar</a>
+                    <a href={`/lecturas/editar?slug=${post.slug}`}>Editar</a>
                   </>
                 )}
             {user === undefined

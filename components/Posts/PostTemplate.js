@@ -87,7 +87,15 @@ const PostTemplate = ({ post, user }) => {
         <h1 style={{ margin: '.5rem 0 .5rem 0' }}>{title}</h1>
         <span>
           Publicado en {formatDate(createdAt)} por{' '}
-          <a href={`/usuario?_id=${postBy._id}`}>{postBy.name}</a>
+          <a
+            href={
+              user && user._id === postBy._id
+                ? '/cuenta/admin'
+                : `/usuario?_id=${postBy._id}`
+            }
+          >
+            {postBy.name}
+          </a>
         </span>
         <div
           style={{ margin: '1rem 0 1rem 0' }}

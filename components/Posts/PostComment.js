@@ -86,7 +86,7 @@ const PostComments = ({ user, _id, post, comments, slug }) => {
         text: '',
       });
       setSuccess(true);
-      router.push(`/lectura?slug=${post.slug}`);
+      router.push(`/lecturas/lectura?slug=${post.slug}`);
     } catch (error) {
       console.error(error);
       catchErrors(error, setError);
@@ -135,7 +135,7 @@ const PostComments = ({ user, _id, post, comments, slug }) => {
         text: '',
       });
       setSuccess(true);
-      router.push(`/lectura?slug=${post.slug}`);
+      router.push(`/lecturas/lectura?slug=${post.slug}`);
     } catch (error) {
       console.error(error);
       catchErrors(error, setError);

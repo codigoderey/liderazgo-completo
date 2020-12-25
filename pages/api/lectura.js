@@ -77,7 +77,6 @@ const handlePutRequest = async (req, res) => {
   }
   try {
     const post = await Post.findById({ _id: postId });
-    console.log(post._id);
 
     await User.find()
       .populate({

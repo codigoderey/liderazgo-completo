@@ -4,32 +4,30 @@ import { useRouter } from 'next/router';
 // sun editor import
 import SunEditor from 'suneditor-react';
 import 'suneditor/dist/css/suneditor.min.css'; // Import Sun Editor's CSS File
+import { Form, Button, Container, Message, TextArea } from 'semantic-ui-react';
 import axios from 'axios';
-import { Form, Button, Container, Message } from 'semantic-ui-react';
-import baseUrl from '../utils/baseUrl';
-import categories from '../utils/categories';
-import catchErrors from '../utils/catchErrors';
-import Header from '../components/Create/Header';
+import baseUrl from '../../utils/baseUrl';
+import categories from '../../utils/categories';
+import catchErrors from '../../utils/catchErrors';
+import Header from '../../components/Create/Header';
+import slug from 'slug';
 
-const Editar = ({ post }) => {
+const CreatePost = ({ user }) => {
   const router = useRouter();
 
   const [content, setContent] = useState('');
 
-  const [updatedPost, setUpdatedPost] = useState({
-    _id: post._id,
-    category: post.category,
-    title: post.title,
-    blurb: post.blurb,
-    slug: post.slug,
+  const [publicacion, setPublicacion] = useState({
+    title: '',
+    blurb: '',
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(String);
 
   const handleInputChange = (e) => {
-    setUpdatedPost({
-      ...updatedPost,
+    setPublicacion({
+      ...publicacion,
       [e.target.name]: e.target.value,
     });
   };
@@ -43,30 +41,36 @@ const Editar = ({ post }) => {
 
     try {
       if (
-        updatedPost.title === '' ||
-        updatedPost.blurb === '' ||
+        publicacion.title === '' ||
+        publicacion.blurb === '' ||
         content === ''
       ) {
         return setError('Todos los blancos son requeridos');
       } else if (
-        !updatedPost.category ||
-        updatedPost.category === 'Selecciona una categoría'
+        !publicacion.category ||
+        publicacion.category === 'Selecciona una categoría'
       ) {
         return setError('Por favor selecciona una categoría');
       }
       setLoading(true);
       const url = `${baseUrl}/api/lecturas`;
       const newContent = {
-        _id: updatedPost._id,
-        title: updatedPost.title,
-        blurb: updatedPost.blurb,
-        category: updatedPost.category,
+        title: publicacion.title,
+        slug: slug(publicacion.title),
+        blurb: publicacion.blurb,
+        category: publicacion.category,
         content: content,
+        postBy: user._id,
       };
       const payload = newContent;
-      await axios.put(url, payload);
+      await axios.post(url, payload);
       setSuccess(true);
-      router.push(`${baseUrl}/lectura?slug=${updatedPost.slug}`);
+      setPublicacion({
+        title: '',
+        blurb: '',
+      });
+      setContent('');
+      router.push('/lecturas/lista#start');
     } catch (error) {
       console.error(error.message);
       catchErrors(error, setError);
@@ -78,9 +82,9 @@ const Editar = ({ post }) => {
   return (
     <>
       <Head>
-        <title>Edita tu publicación | Liderazgo Completo</title>
+        <title>Crea tu publicación | Liderazgo Completo</title>
       </Head>
-      <Header action="Edita" />
+      <Header action="Crea" />
 
       {/* Create new post */}
       <Container>
@@ -99,12 +103,13 @@ const Editar = ({ post }) => {
           <Message
             error
             icon="question"
-            header="Hubo un error!"
+            header="Hubo un error, intenta recargar la página!"
             content={error}
           />
           <Form.Field>
             <label>Categoría</label>
             <select name="category" onChange={handleInputChange}>
+              <option>Selecciona una categoría</option>
               {categories.map((cat) => (
                 <option value={cat} key={cat}>
                   {cat}
@@ -116,22 +121,29 @@ const Editar = ({ post }) => {
             <label>Título</label>
             <Form.Input
               name="title"
+              placeholder="Título"
               onChange={handleInputChange}
-              value={updatedPost.title}
+              value={publicacion.title}
             />
           </Form.Field>
           <Form.Field>
             <label>Resumen</label>
-            <Form.Input
+            <TextArea
               name="blurb"
+              placeholder="Resumen"
               onChange={handleInputChange}
-              value={updatedPost.blurb}
+              value={publicacion.blurb}
             />
           </Form.Field>
+
+          {/* Sun Editor Component */}
+          <Form.Field style={{ marginBottom: 0 }}>
+            <label>Contenido</label>
+          </Form.Field>
           <SunEditor
-            setContents={post.content}
+            height="600"
+            setContents={content}
             name="content"
-            placeholder="Contenido"
             onChange={handleEditorChange}
             value={content}
             placeholder="Tu contenido aquí"
@@ -147,27 +159,21 @@ const Editar = ({ post }) => {
                   'subscript',
                   'superscript',
                 ],
-                ['fontColor', 'hiliteColor', 'textStyle', 'removeFormat'],
+                ['fontColor', 'hiliteColor', 'textStyle'],
+                ['removeFormat'],
                 '/', // Line break
                 ['align', 'horizontalRule', 'list', 'lineHeight'],
                 ['link', 'image', 'video', 'audio'],
-                ['fullScreen'],
+                /** ['imageGallery'] */ ['fullScreen'],
               ],
             }}
           />
 
-          <Button type="submit">Actualizar</Button>
+          <Button type="submit">Publicar</Button>
         </Form>
       </Container>
     </>
   );
 };
 
-Editar.getInitialProps = async ({ query: { slug } }) => {
-  const url = `${baseUrl}/api/lectura`;
-  const payload = { params: { slug } };
-  const response = await axios.get(url, payload);
-  return { post: response.data };
-};
-
-export default Editar;
+export default CreatePost;

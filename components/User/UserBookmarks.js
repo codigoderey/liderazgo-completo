@@ -10,7 +10,6 @@ import {
 import formatDate from '../../utils/formatDate';
 
 const UserBookmarks = ({ usuario }) => {
-  console.log(usuario.bookmarked);
   return (
     <Container style={{ marginBottom: '2rem' }}>
       {usuario.bookmarked.length == 0 ? (
