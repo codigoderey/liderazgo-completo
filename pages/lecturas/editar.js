@@ -156,7 +156,7 @@ const Editar = ({ post }) => {
             }}
           />
 
-          <Button type="submit">Actualizar</Button>
+          <Button style={{ margin: "1rem 0" }} type="submit">Actualizar</Button>
         </Form>
       </Container>
     </>

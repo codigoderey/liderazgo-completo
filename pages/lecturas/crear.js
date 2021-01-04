@@ -164,7 +164,7 @@ const CreatePost = ({ user }) => {
                 '/', // Line break
                 ['align', 'horizontalRule', 'list', 'lineHeight'],
                 ['link', 'image', 'video', 'audio'],
-                /** ['imageGallery'] */ ['fullScreen'],
+                /** ['imageGallery'] */['fullScreen'],
               ],
             }}
           />

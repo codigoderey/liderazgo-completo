@@ -3,7 +3,8 @@ const categories = [
     "administracion",
     "salud",
     "ambiente",
-    "estetica"
+    "estetica",
+    "general"
 ]
 
 export default categories

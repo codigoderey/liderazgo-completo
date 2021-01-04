@@ -30,14 +30,14 @@ const resetPasword = async ({ name, email, resetUrl }) => {
           {
             type: 'text/html',
             value: `
-                <p><b>${name}<b/>, estás recibido este mensaje porque solicitaste reiniciar tu contraseña para ingresar a <a href=${baseUrl}>proyectorasae.com<a/>.<p/>
+                <p><b>${name}<b/>, estás recibido este mensaje porque solicitaste reiniciar tu contraseña para ingresar a <a href=${baseUrl}>liderazgocompleto.com<a/>.<p/>
                 
                 <p>Por favor, oprime el siguiente enlace para re iniciar tu contraseña.<p/>
 
                 <a href="${resetUrl}">Reiniciar mi contraseña<a/>
 
                 <p>Cordialmente,<p/>
-                <p>El equipo de proyecto RASAE<p/>
+                <p>El equipo de proyecto Liderazgo Completo<p/>
                 `,
           },
         ],
@@ -64,25 +64,25 @@ const newAccountWelcomeEmail = async ({ name, email }) => {
                 email,
               },
             ],
-            subject: 'Bienvenido a RASAE',
+            subject: 'Bienvenido a Liderazgo Completo',
           },
         ],
         from: {
-          email: 'noreply@rasaeproject.com',
-          name: 'Proyecto Rasae',
+          email: 'noreply@liderazgocompleto.com',
+          name: 'Proyecto Liderazgo Completo',
         },
         content: [
           {
             type: 'text/html',
             value: `
-                <p><b>${name}<b/>, Gracias por ingresar la comunidad RASAE, aquí estamos para servir con lecturas de calidad que aporten valor a tu vida y la de las personas que te rodean.<p/>
+                <p><b>${name}<b/>, Gracias por ingresar la comunidad Liderazgo Completo, aquí estamos para servir con lecturas de calidad que aporten valor a tu vida y la de las personas que te rodean.<p/>
                 
-                <p>Visita <a href="http://localhost:3000">proyectorasae.com<a/>.<p/>
+                <p>Visita <a href="http://localhost:3000">liderazgocompleto.com<a/>.<p/>
                 
                 <p>Por favor, oprime el siguiente enlace para re iniciar tu contraseña.<p/>
 
                 <p>Cordialmente,<p/>
-                <p>El equipo de proyecto RASAE<p/>
+                <p>El equipo de proyecto Liderazgo Completo<p/>
                 `,
           },
         ],

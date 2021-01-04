@@ -30,12 +30,12 @@ const newAccountWelcomeEmail = async ({ name, email }) => {
           {
             type: 'text/html',
             value: `
-                <p><b>${name}<b/>, Gracias por ingresar la comunidad RASAE, aquí estamos para servir con lecturas de calidad que aporten valor a tu vida y la de las personas que te rodean.<p/>
+                <p><b>${name}<b/>, Gracias por ingresar la comunidad Liderazgo Completo, aquí estamos para servir con lecturas de calidad que aporten valor a tu vida y la de las personas que te rodean.<p/>
                 
-                <p>Visita <a href=${baseUrl}>proyectorasae.com<a/>.<p/>
+                <p>Visita <a href=${baseUrl}>liderazgocompleto.com<a/>.<p/>
 
                 <p>Cordialmente,<p/>
-                <p>El equipo de proyecto RASAE<p/>
+                <p>El equipo de proyecto Liderazgo Completo<p/>
                 `,
           },
         ],

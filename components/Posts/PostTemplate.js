@@ -42,7 +42,7 @@ const PostTemplate = ({ post, user }) => {
     } else if (category === 'estetica') {
       setColor('pink');
     } else {
-      setColor(false);
+      setColor("yellow");
     }
   }, []);
 
@@ -112,19 +112,19 @@ const PostTemplate = ({ post, user }) => {
             </Button>
           </Button>
         ) : (
-          user && (
-            <Button
-              onClick={handleRemoveBookmark}
-              as="div"
-              labelPosition="right"
-            >
-              <Button icon>
-                <Icon name="bookmark" />
+            user && (
+              <Button
+                onClick={handleRemoveBookmark}
+                as="div"
+                labelPosition="right"
+              >
+                <Button icon>
+                  <Icon name="bookmark" />
                 Lectura guardada
               </Button>
-            </Button>
-          )
-        )}
+              </Button>
+            )
+          )}
         {/* likes and questions end */}
 
         <Divider />

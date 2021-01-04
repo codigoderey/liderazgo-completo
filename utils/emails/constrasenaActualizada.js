@@ -31,10 +31,10 @@ const contrasenaActualizada = async ({ name, email }) => {
             value: `
                 <p><b>${name}<b/>, tu contraseña ha sido actualizada exitosamente.<p/>
                 
-                <p>Inicia sesión en <a href=${baseUrl}/ingresar>proyectorasae.com<a/>.<p/>
+                <p>Inicia sesión en <a href=${baseUrl}/ingresar>liderazgocompleto.com<a/>.<p/>
 
                 <p>Cordialmente,<p/>
-                <p>El equipo de proyecto RASAE<p/>
+                <p>El equipo de proyecto Liderazgo Completo<p/>
                 `,
           },
         ],

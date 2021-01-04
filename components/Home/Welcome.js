@@ -5,7 +5,7 @@ import { Container, List } from 'semantic-ui-react';
 const Welcome = () => {
   return (
     <Container style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-      <h1>Bienvenidos a Projecto RASAE</h1>
+      <h1>Bienvenidos a Liderazgo Completo</h1>
       <p>
         Projecto Liderazgo Completo es un marco de liderato personal y colectivo
         cuyos desarrollo depende en las siguientes categorías fundamentales de

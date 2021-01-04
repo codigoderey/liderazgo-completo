@@ -16,14 +16,16 @@ const Categorias = ({ categorias }) => {
               {cat === 'relaciones'
                 ? 'Relaciones'
                 : cat === 'estetica'
-                ? 'Estética'
-                : cat === 'administracion'
-                ? 'Administración'
-                : cat === 'salud'
-                ? 'Salud'
-                : cat === 'ambiente'
-                ? 'Ambiente'
-                : null}
+                  ? 'Estética'
+                  : cat === 'administracion'
+                    ? 'Administración'
+                    : cat === 'salud'
+                      ? 'Salud'
+                      : cat === 'ambiente'
+                        ? 'Ambiente'
+                        : cat === 'general'
+                          ? 'General'
+                          : null}
             </Link>
           </li>
         ))}
